@@ -1,1 +1,22 @@
-GET http://localhost:5000
+#GET http://localhost:5000
+
+#GET http://localhost:5000/not_found
+
+#GET http://localhost:5000/name?username=ange
+
+
+
+# Request for all users
+#GET http://localhost:5000/users/
+
+
+# Request for one user
+#GET http://localhost:5000/users/adminuser
+
+
+# Request for all recipes
+GET http://localhost:5000/recipes/
+
+# Request for one recipe
+
+#GET http://localhost:5000/recipes/Creamy_Beef_Pasta
