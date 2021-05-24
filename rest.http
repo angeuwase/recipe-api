@@ -1,22 +1,124 @@
-#GET http://localhost:5000
+# Register a user 
+POST http://localhost:5000/register HTTP/1.1
+content-type: application/json
 
-#GET http://localhost:5000/not_found
+{
+    "email": "test3@gmail.com",
+    "username": "test3user"
+}
 
-#GET http://localhost:5000/name?username=ange
+###
+# Login as normal user
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "test3@gmail.com",
+    "username": "test3user"
+}
+
+###
+# Login as admin 
+POST http://localhost:5000/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "username": "adminuser"
+}
+
+
+###
+
+# ENDPOINTS FOR USERS #
+
+#Request for get all users
+GET http://localhost:5000/users/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxNTc4MywianRpIjoiYjBjMDU4ZDQtNzM4Yy00YjBjLThmODYtMWMxOWZiMTZlNGM1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxNTc4MywiZXhwIjoxNjIxODE2NjgzfQ.THF8dZYAIFAzoZ5P7oVsNAJNAfKzoUBW6216lxs3Q_c
+
+###
+
+# Request for get one user
+GET http://localhost:5000/users/adminuser
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxNTc4MywianRpIjoiYjBjMDU4ZDQtNzM4Yy00YjBjLThmODYtMWMxOWZiMTZlNGM1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxNTc4MywiZXhwIjoxNjIxODE2NjgzfQ.THF8dZYAIFAzoZ5P7oVsNAJNAfKzoUBW6216lxs3Q_c
+
+###
+
+# Request for add a user
+POST http://localhost:5000/users/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxNjk5MSwianRpIjoiNmVjMTZhNTQtMTU1NC00NGVmLWE0NGItNmJmNjc4YTNiZmZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxNjk5MSwiZXhwIjoxNjIxODE3ODkxfQ.JxO-W-20WadwjPII8DYd5glTQ0bVt8SxxZhjCpFwOtA
+Content-Type: application/json
+
+{
+    "email": "newuser3@gmail.com",
+    "username": "newuser",
+    "is_admin": "0"
+}
+
+###
+
+# Request for update user
+POST http://localhost:5000/users/newuser
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxNjk5MSwianRpIjoiNmVjMTZhNTQtMTU1NC00NGVmLWE0NGItNmJmNjc4YTNiZmZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxNjk5MSwiZXhwIjoxNjIxODE3ODkxfQ.JxO-W-20WadwjPII8DYd5glTQ0bVt8SxxZhjCpFwOtA
+Content-Type: application/json
+
+{
+    "email": "newuser@gmail.com",
+    "username": "newuser",
+    "is_admin": "1"
+}
+
+
+###
+
+# Request for delete user
+DELETE http://localhost:5000/users/newuser
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxNjk5MSwianRpIjoiNmVjMTZhNTQtMTU1NC00NGVmLWE0NGItNmJmNjc4YTNiZmZlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxNjk5MSwiZXhwIjoxNjIxODE3ODkxfQ.JxO-W-20WadwjPII8DYd5glTQ0bVt8SxxZhjCpFwOtA
 
 
 
-# Request for all users
-#GET http://localhost:5000/users/
 
 
-# Request for one user
-#GET http://localhost:5000/users/adminuser
+###
 
+# ENDPOINTS FOR RECIPES
 
 # Request for all recipes
 GET http://localhost:5000/recipes/
 
+###
 # Request for one recipe
+GET http://localhost:5000/recipes/Creamy_Beef_Pasta
 
-#GET http://localhost:5000/recipes/Creamy_Beef_Pasta
+
+###
+# Add a recipe 
+POST http://localhost:5000/recipes/
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxMDE0OSwianRpIjoiYmJlNDVkZTktZTAwNS00ZmUwLTg3OWUtNzljN2U0YTNkY2JmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxMDE0OSwiZXhwIjoxNjIxODExMDQ5fQ.qEvV2ADcdLCmyqZ2tZsQyiVJiM5x_b9rMQMw1PyQArU
+Content-Type: application/json
+
+{
+    "name": "Fish_and_Chips",
+    "protein": "fish",
+    "ingredients": "fish, chips"
+}
+
+
+###
+# Update a recipe
+POST http://localhost:5000/recipes/Creamy_Beef_Pasta
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgwOTY1OSwianRpIjoiN2QzNjY4NWEtYzQxZi00YTEyLWFhOGYtZjAwNDVjNTlkNjRmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgwOTY1OSwiZXhwIjoxNjIxODEwNTU5fQ.ad9cDVM6T9uu9SrpCleQAMtnIgPS-Efc1LosJUyribY
+Content-Type: application/json
+
+{
+    "name": "Creamy_Beef_Pasta",
+    "protein": "beef",
+    "ingredients": "beef, garlic, basil, oregano, salt, pepper, flour, tomatoes, beef broth, pasta, heavy cream, cheddar cheese"
+}
+
+
+
+###
+# Delete a recipe
+DELETE http://localhost:5000/recipes/Fish_and_Chips
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTYyMTgxMDE0OSwianRpIjoiYmJlNDVkZTktZTAwNS00ZmUwLTg3OWUtNzljN2U0YTNkY2JmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6ImFkbWludXNlciIsIm5iZiI6MTYyMTgxMDE0OSwiZXhwIjoxNjIxODExMDQ5fQ.qEvV2ADcdLCmyqZ2tZsQyiVJiM5x_b9rMQMw1PyQArU

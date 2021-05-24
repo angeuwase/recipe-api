@@ -7,40 +7,7 @@ Users can only access recipe data
 Admin user can access and modify recipe and user data   
 
 
-
-# Design
-
-1. Identify Participants
-Users   
--active users. external to the organisation. will be consuming the API
-
-2. Identify the activities
-find a recipe  
-
-3. Break the activities into steps   
-Step 1: Register for an account   
-Step 2: Get a list of all recipes   
-Step 3: Request desired recipe   
-
-4. Create API definition (ID the resources, the actions you want to perform on them, and the HTTP methods that support those actions)  
-/users/                     GET     returns a list of all registered users   
-/users/                     POST    adds a new user 
-/users/<int:id>             GET     returns the user data for the user with the given ID
-/users/<int:id>             PUT     modifies the user data for the user with the given ID
-/users/<int:id>             DELETE  deletes the user with the given ID
-/recipes/                   GET     returns a list of all recipes stored in the database
-/recipes/                   POST    adds a new recipe
-/recipes/<int:id>           GET     returns the recipe data for the recipe with the given ID
-/recipes/<int:id>           PUT     modifies the recipe data for the recipe with the given ID
-/recipes/<int:id>           DELETE  deletes the recipe with the given ID
-
-
-To perform POST, PUT and DELETE requests a user needs to be logged in.  
-All other users dont need to log in to access the API  
-
-
-
-
+<hr>
 
 # Handling parameters passed in a request message
 
@@ -61,6 +28,8 @@ def name():
 
 
 ```
+
+<hr>
 
 
 # Seeding database with flask CLI
@@ -94,6 +63,9 @@ $ flask seed_db
 ```
 
 3. Open up SQLite database using DB Browser for SQLite and you will see the database has been populated   
+
+
+<hr>
 
 
 # Returning database query results as json
@@ -219,4 +191,46 @@ def user_detail(username:str):
     return user_schema.dump(user)
 
 ```
+
+<hr>
+
+# API Security 
+
+-Using flask-jwt-extended for authenficiation using JWT   
+
+## Installation 
+```
+$ pip install flask-jwt-extended
+```
+
+## Configuration  
+You need to specify JWT_SECRET_KEY   
+
+```
+from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
+
+app.config['JWT_SECRET_KEY'] = 'super jwt key'
+jwt = JWTManager(app)
+```
+
+## Usage   
+
+1. Create a login route for users to login. When a user is successfully authenticated, they are logged in and issued a JWT using `create_access_token()`   
+```
+
+```
+
+2. Any routes that require authentification should be protected using `jwt_required()`. You can find out the user of the jwt token by calling `current_user = get_jwt_identity()`
+```
+
+```
+
+3. To access a jwt_required protected view you need to send in the JWT with each request. By default, this is done with an authorization header that looks like:
+
+`Authorization: Bearer <access_token>`
+
+To get the JWT you first need to log in
+
+
+
 
